@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Ghost</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="bg">
+            <div class="chooseCon">
+                <h1 class="choose">Download For</h1>
+            </div>
+            <button class="btn os windows" data-file="https://github.com/MustafaBioS/Flappy-Ghost/releases/download/windows/Windows.zip">Windows</button>
+            <button class="btn os mac" data-file="https://github.com/MustafaBioS/Flappy-Ghost/archive/refs/tags/MacOS.zip">MacOS</button>
+            <button class="btn os linux" data-file="https://github.com/MustafaBioS/Flappy-Ghost/archive/refs/tags/Linux.zip">Linux</button>
+        </div>
+    </div>
+    <h1 class="title">Flappy Ghost</h1>
+    <img src="../image_720.png" class="pic" alt="Game Image">
+    <p class="desc">Flappy Ghost is a flappy birds dupe made with Unity, it's my first Unity game ever and i sure hope its not the last, i've been really interested in game development and maybe my next project will hopefully be a 3d game.</p>
+    <button class="btn dl">DOWNLOAD</button> 
+
+    <script>
+        const dl = document.querySelector('.dl');
+        const div = document.querySelector('.bg');
+        const cont = document.querySelector('.container');
+        const os = document.querySelectorAll('.os');
+
+        dl.addEventListener('click', ()=> {
+            cont.style.display = 'flex';
+            cont.classList.add('animation');
+        })
+
+        cont.addEventListener('click', (e) => {
+        if (e.target === cont) {
+            cont.style.display = 'none';
+        }
+        });
+        
+    os.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const file = btn.dataset.file;
+        const link = document.createElement('a');
+        link.href = file;      // file should be in same folder as HTML
+        link.download = file;  // name of downloaded file
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        cont.style.display = 'none'; // close modal after download
+    });
+    });
+
+    </script>
+</body>
+</html>
